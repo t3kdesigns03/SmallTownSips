@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 800 632"
+     width="800" height="632"
+     role="img"
+     aria-labelledby="logoTitle logoDesc">
+  <title id="logoTitle">Small Town Sips</title>
+  <desc id="logoDesc">Small Town Sips logo featuring the state of Iowa with colorful grid, drink cup, and Truro Iowa text</desc>
+  <image width="800" height="632" preserveAspectRatio="xMidYMid meet"
+         href="logo.png"/>
+</svg>

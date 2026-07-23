@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Fonts (loaded via <link> in layout.tsx; consumed by Tailwind fontFamily) */
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-script: "Caveat", "Segoe Script", cursive;
+
+  /* Brand tokens (also mirrored in tailwind.config.ts) */
+  --cream: #faf4e9;
+  --sand: #f0e4ce;
+  --terracotta: #c86b4a;
+  --terracotta-deep: #a9502f;
+  --sage: #8fa07c;
+  --sage-deep: #5f7154;
+  --gold: #e0a84e;
+  --charcoal: #3a322c;
+  --river: #6e93a6;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--cream);
+    color: var(--charcoal);
+    font-family: var(--font-sans), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    /* Soft paper grain + gentle warm wash */
+    background-image:
+      radial-gradient(1200px 600px at 85% -10%, rgba(224, 168, 78, 0.1), transparent 60%),
+      radial-gradient(900px 500px at -5% 5%, rgba(143, 160, 124, 0.1), transparent 55%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display), Georgia, serif;
+    color: var(--charcoal);
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background: rgba(200, 107, 74, 0.22);
+  }
+}
+
+@layer components {
+  .brand-underline {
+    background-image: linear-gradient(transparent 62%, rgba(224, 168, 78, 0.45) 62%);
+    background-repeat: no-repeat;
+  }
+}
+
+/* Respect users who prefer less motion — freeze all brand animation */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

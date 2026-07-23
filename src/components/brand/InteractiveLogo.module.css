@@ -1,0 +1,168 @@
+.wrap {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  display: block;
+}
+
+/* Each mosaic tile */
+.tile {
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  transform: scale(0.2) rotate(-8deg);
+  transition:
+    opacity 0.5s ease,
+    transform 0.55s cubic-bezier(0.2, 0.9, 0.25, 1);
+  will-change: transform, opacity, filter;
+}
+
+/* Reveal: staggered pop-in once in view */
+.revealed .tile {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+  transition-delay: calc(var(--w) * 22ms);
+}
+
+/* Idle twinkle after reveal settles */
+.revealed .tile {
+  animation: twinkle 6.5s ease-in-out infinite;
+  animation-delay: calc(1s + var(--w) * 60ms);
+}
+
+@keyframes twinkle {
+  0%, 100% { filter: saturate(1) brightness(1); }
+  50% { filter: saturate(1.18) brightness(1.06); }
+}
+
+/* Hover: a bright color-shift wave ripples across the state */
+.wrap:hover .tile {
+  animation: colorwave 1.6s ease-in-out infinite;
+  animation-delay: calc(var(--w) * 55ms);
+}
+
+@keyframes colorwave {
+  0%, 100% { filter: hue-rotate(0deg) saturate(1) brightness(1); }
+  45% { filter: hue-rotate(28deg) saturate(1.35) brightness(1.12); }
+}
+
+/* State outline */
+.outline {
+  fill: none;
+  stroke: rgba(58, 50, 44, 0.55);
+  stroke-width: 4;
+  stroke-linejoin: round;
+}
+
+/* Script wordmark */
+.wordmark {
+  animation: fade-rise 0.7s ease 0.25s both;
+}
+
+@keyframes fade-rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Truro loaded-tea marker */
+.marker {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.25, 1);
+  cursor: pointer;
+}
+
+.marker:hover {
+  transform: scale(1.16);
+}
+
+.markerInner {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  animation: markerBob 4.5s ease-in-out infinite;
+}
+
+@keyframes markerBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.markerStraw {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  animation: sway 5s ease-in-out infinite;
+}
+
+.markerRing {
+  fill: none;
+  stroke: #a9502f;
+  stroke-width: 2.5;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ripple 2.6s ease-out infinite;
+}
+
+.markerLabel {
+  animation: fade-rise 0.7s ease 0.5s both;
+}
+
+/* Sparkles on the cup */
+.sparkle {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sparkle 2.8s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { transform: scale(0.7); opacity: 0.3; }
+  50% { transform: scale(1); opacity: 0.95; }
+}
+
+@keyframes ripple {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+/* Tea cup */
+.cup {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  animation: bob 5s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.leaf {
+  transform-box: fill-box;
+  transform-origin: bottom left;
+  animation: sway 4.5s ease-in-out infinite;
+}
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(5deg); }
+}
+
+.straw {
+  transform-box: fill-box;
+  transform-origin: bottom center;
+  animation: sway 6s ease-in-out infinite reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile { opacity: 1; transform: none; animation: none; transition: none; }
+  .wordmark, .markerLabel { opacity: 1; transform: none; }
+  .sparkle { opacity: 0.85; transform: none; }
+  .wrap:hover .tile,
+  .marker, .markerInner, .markerStraw, .markerRing, .sparkle,
+  .wordmark, .markerLabel, .cup, .leaf, .straw { animation: none; }
+}

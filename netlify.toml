@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build"
+
+# Netlify auto-installs the Next.js runtime; it handles the publish dir,
+# server actions, and middleware. Set env vars in Site settings → Environment:
+#   NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+#   (and RESEND_API_KEY / OWNER_ORDER_EMAIL / FROM_EMAIL when the order flow lands)
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
